@@ -226,7 +226,7 @@ public final class Notification {
 
             int flags = PendingIntent.FLAG_UPDATE_CURRENT;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+                flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
             }
             PendingIntent pi = PendingIntent.getBroadcast(
                     context, 0, intent, flags);
@@ -318,7 +318,7 @@ public final class Notification {
 
             int flags = PendingIntent.FLAG_CANCEL_CURRENT;
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_CANCEL_CURRENT;
+                flags = PendingIntent.FLAG_MUTABLE  |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_CANCEL_CURRENT;
             }
             PendingIntent pi = PendingIntent.getBroadcast(
                     context, 0, intent, flags);
