@@ -26,6 +26,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationCompat.MessagingStyle.Message;
@@ -203,8 +204,9 @@ public final class Builder {
         // request code and flags not added for demo purposes
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+            flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
         }
+
         PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, intent, flags);
 
         builder.setFullScreenIntent(pendingIntent, true);
@@ -404,7 +406,7 @@ public final class Builder {
 
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+            flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE   | PendingIntent.FLAG_UPDATE_CURRENT;
         }
         PendingIntent deleteIntent = PendingIntent.getBroadcast(
                 context, reqCode, intent, flags);
@@ -437,7 +439,7 @@ public final class Builder {
 
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+            flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
         }
         PendingIntent contentIntent = PendingIntent.getService(
                 context, reqCode, intent, flags);
@@ -491,7 +493,7 @@ public final class Builder {
 
         int flags = PendingIntent.FLAG_UPDATE_CURRENT;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_UPDATE_CURRENT;
+            flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
         }
         return PendingIntent.getService(
                 context, reqCode, intent, flags);
