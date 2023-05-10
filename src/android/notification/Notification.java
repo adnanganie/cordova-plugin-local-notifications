@@ -30,6 +30,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.net.Uri;
+import android.os.Build;
 import android.service.notification.StatusBarNotification;
 import android.util.Pair;
 import android.util.Log;
@@ -224,10 +225,9 @@ public final class Notification {
             if (!date.after(new Date()) && trigger(intent, receiver))
                 continue;
 
-            int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
-            }
+
+            final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+
             PendingIntent pi = PendingIntent.getBroadcast(
                     context, 0, intent, flags);
 
@@ -316,10 +316,8 @@ public final class Notification {
         for (String action : actions) {
             Intent intent = new Intent(action);
 
-            int flags = PendingIntent.FLAG_CANCEL_CURRENT;
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                flags = PendingIntent.FLAG_MUTABLE  |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_CANCEL_CURRENT;
-            }
+            final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_CANCEL_CURRENT;
+
             PendingIntent pi = PendingIntent.getBroadcast(
                     context, 0, intent, flags);
 
