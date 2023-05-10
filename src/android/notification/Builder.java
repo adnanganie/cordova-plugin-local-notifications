@@ -202,10 +202,8 @@ public final class Builder {
 
         int reqCode = random.nextInt();
         // request code and flags not added for demo purposes
-        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE | PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
-        }
+        final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+
 
         PendingIntent pendingIntent = PendingIntent.getActivity(context, reqCode, intent, flags);
 
@@ -404,10 +402,8 @@ public final class Builder {
 
         int reqCode = random.nextInt();
 
-        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE   | PendingIntent.FLAG_UPDATE_CURRENT;
-        }
+        final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+
         PendingIntent deleteIntent = PendingIntent.getBroadcast(
                 context, reqCode, intent, flags);
 
@@ -437,10 +433,8 @@ public final class Builder {
 
         int reqCode = random.nextInt();
 
-        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
-        }
+        final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+
         PendingIntent contentIntent = PendingIntent.getService(
                 context, reqCode, intent, flags);
 
@@ -491,10 +485,8 @@ public final class Builder {
 
         int reqCode = random.nextInt();
 
-        int flags = PendingIntent.FLAG_UPDATE_CURRENT;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            flags = PendingIntent.FLAG_MUTABLE |  PendingIntent.FLAG_IMMUTABLE  | PendingIntent.FLAG_UPDATE_CURRENT;
-        }
+        final int flags = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M ? PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE : PendingIntent.FLAG_UPDATE_CURRENT;
+
         return PendingIntent.getService(
                 context, reqCode, intent, flags);
     }
